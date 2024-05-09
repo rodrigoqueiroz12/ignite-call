@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Text, TextInput } from '@ignite-ui/react'
 import { ArrowRight } from '@phosphor-icons/react'
+import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import z from 'zod'
 
@@ -22,13 +23,18 @@ export function ClaimUsernameForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ClaimUsernameFormData>({
     resolver: zodResolver(claimUsernameFormSchema),
   })
 
-  async function handleClaimUsername({ username }: ClaimUsernameFormData) {
-    console.log(username)
+  const router = useRouter()
+
+  async function handleClaimUsername(data: ClaimUsernameFormData) {
+    console.log(data)
+    const { username } = data
+
+    router.push(`/sign-up?username=${username}`)
   }
 
   return (
@@ -41,7 +47,7 @@ export function ClaimUsernameForm() {
           crossOrigin=""
           {...register('username')}
         />
-        <Button size="sm" type="submit">
+        <Button size="sm" type="submit" disabled={isSubmitting}>
           Reservar
           <ArrowRight />
         </Button>
