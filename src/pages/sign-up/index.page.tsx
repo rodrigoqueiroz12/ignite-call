@@ -1,11 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Heading, MultiStep, Text, TextInput } from '@ignite-ui/react'
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
+import { AxiosError } from 'axios'
 import { Roboto } from 'next/font/google'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+
+import { api } from '@/lib/axios'
 
 import { Container, Form, FormError, Header } from './styles'
 
@@ -44,8 +47,17 @@ export default function SignUp() {
     }
   }, [router.query?.username, setValue])
 
-  function handleRegister(data: RegisterFormData) {
-    console.log(data)
+  async function handleRegister({ username, name }: RegisterFormData) {
+    try {
+      await api.post('/users', {
+        username,
+        name,
+      })
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        alert(error.response?.data.message)
+      }
+    }
   }
 
   return (
