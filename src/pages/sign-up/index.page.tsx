@@ -53,6 +53,8 @@ export default function SignUp() {
         username,
         name,
       })
+
+      await router.push('/sign-up/connect-calendar')
     } catch (error) {
       if (error instanceof AxiosError) {
         alert(error.response?.data.message)
