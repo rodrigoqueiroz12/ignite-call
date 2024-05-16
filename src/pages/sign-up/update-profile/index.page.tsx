@@ -16,6 +16,11 @@
 // import { useForm } from 'react-hook-form'
 // import { z } from 'zod'
 
+import { GetServerSideProps } from 'next'
+import { getServerSession } from 'next-auth'
+
+import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
+
 // import { api } from '@/lib/axios'
 // import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 // import { Container, Header } from '../styles'
@@ -84,16 +89,16 @@ export default function UpdateProfile() {
   // )
 }
 
-// export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-//   const session = await getServerSession(
-//     req,
-//     res,
-//     buildNextAuthOptions(req, res),
-//   )
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const session = await getServerSession(
+    req,
+    res,
+    buildNextAuthOptions(req, res),
+  )
 
-//   return {
-//     props: {
-//       session,
-//     },
-//   }
-// }
+  return {
+    props: {
+      session,
+    },
+  }
+}
