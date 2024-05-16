@@ -1,4 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import {
+  Avatar,
+  Button,
+  Heading,
+  MultiStep,
+  Text,
+  TextArea,
+} from '@ignite-ui/react'
+import { ArrowRight } from '@phosphor-icons/react'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { getServerSession } from 'next-auth'
@@ -10,6 +19,9 @@ import { z } from 'zod'
 import { api } from '@/lib/axios'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 
+import { Container, Header } from '../styles'
+import { FormAnnotation, ProfileBox } from './styles'
+
 const updateProfileSchema = z.object({
   bio: z.string(),
 })
@@ -19,9 +31,9 @@ type UpdateProfileData = z.infer<typeof updateProfileSchema>
 export default function UpdateProfile() {
   const router = useRouter()
   const {
-    // register,
+    register,
     handleSubmit,
-    // formState: { isSubmitting },
+    formState: { isSubmitting },
   } = useForm<UpdateProfileData>({
     resolver: zodResolver(updateProfileSchema),
   })
@@ -37,51 +49,44 @@ export default function UpdateProfile() {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleUpdateProfile)}>
+    <>
       <NextSeo title="Atualize seu perfil | Ignite Call" noindex />
 
-      <h1>{session.data?.user.name}</h1>
-    </form>
+      <Container>
+        <Header>
+          <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
+          <Text>
+            Precisamos de algumas informações para criar seu perfil! Ah, você
+            pode editar essas informações depois.
+          </Text>
+          <MultiStep size={4} currentStep={4} />
+        </Header>
+        <ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
+          <div className="label">
+            <Text>Foto de perfil</Text>
+            <Avatar
+              src={session.data?.user.avatar_url}
+              referrerPolicy="no-referrer"
+              alt={session.data?.user.name}
+            />
+          </div>
+          <div className="label">
+            <Text size="sm" as="label" htmlFor="bio">
+              Sobre você
+            </Text>
+            <TextArea id="bio" {...register('bio')} />
+            <FormAnnotation size="sm">
+              Fale um pouco sobre você. Isto será exibido em sua página pessoal.
+            </FormAnnotation>
+          </div>
+          <Button type="submit" disabled={isSubmitting}>
+            Finalizar
+            <ArrowRight />
+          </Button>
+        </ProfileBox>
+      </Container>
+    </>
   )
-
-  // return (
-  //   <>
-  //
-  //     <Container>
-  //       <Header>
-  //         <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
-  //         <Text>
-  //           Precisamos de algumas informações para criar seu perfil! Ah, você
-  //           pode editar essas informações depois.
-  //         </Text>
-  //         <MultiStep size={4} currentStep={4} />
-  //       </Header>
-  //       <ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
-  //         <div className="label">
-  //           <Text>Foto de perfil</Text>
-  //           <Avatar
-  //             src={session.data?.user.avatar_url}
-  //             referrerPolicy="no-referrer"
-  //             alt={session.data?.user.name}
-  //           />
-  //         </div>
-  //         <div className="label">
-  //           <Text size="sm" as="label" htmlFor="bio">
-  //             Sobre você
-  //           </Text>
-  //           <TextArea id="bio" {...register('bio')} />
-  //           <FormAnnotation size="sm">
-  //             Fale um pouco sobre você. Isto será exibido em sua página pessoal.
-  //           </FormAnnotation>
-  //         </div>
-  //         <Button type="submit" disabled={isSubmitting}>
-  //           Finalizar
-  //           <ArrowRight />
-  //         </Button>
-  //       </ProfileBox>
-  //     </Container>
-  //   </>
-  // )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
