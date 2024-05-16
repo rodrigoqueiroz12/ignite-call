@@ -12,7 +12,7 @@ import { z } from 'zod'
 import { api } from '@/lib/axios'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 
-import { FormAnnotation, ProfileBox } from './styles'
+import { FormAnnotation } from './styles'
 
 const updateProfileSchema = z.object({
   bio: z.string(),
@@ -54,7 +54,8 @@ export default function UpdateProfile() {
         <MultiStep size={4} currentStep={4} />
       </Header> */}
 
-      <ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
+      {/* <ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}> */}
+      <form onSubmit={handleSubmit(handleUpdateProfile)}>
         <div className="label">
           <Text>Foto de perfil</Text>
           <Avatar
@@ -76,7 +77,8 @@ export default function UpdateProfile() {
           Finalizar
           <ArrowRight />
         </Button>
-      </ProfileBox>
+      </form>
+      {/* </ProfileBox> */}
       {/* </Container> */}
     </>
   )
