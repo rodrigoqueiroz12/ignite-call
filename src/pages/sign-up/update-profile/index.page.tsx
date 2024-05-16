@@ -17,7 +17,9 @@
 // import { z } from 'zod'
 
 import { GetServerSideProps } from 'next'
+// import { useRouter } from 'next/router'
 import { getServerSession } from 'next-auth'
+import { useSession } from 'next-auth/react'
 
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 
@@ -33,7 +35,6 @@ import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 // type UpdateProfileData = z.infer<typeof updateProfileSchema>
 
 export default function UpdateProfile() {
-  return <h1>Hello</h1>
   // const router = useRouter()
   // const {
   //   register,
@@ -42,13 +43,16 @@ export default function UpdateProfile() {
   // } = useForm<UpdateProfileData>({
   //   resolver: zodResolver(updateProfileSchema),
   // })
-  // const session = useSession()
+  const session = useSession()
   // async function handleUpdateProfile(data: UpdateProfileData) {
   //   await api.put('/users/profile', {
   //     bio: data.bio,
   //   })
   //   await router.push(`/schedule/${session.data?.user.username}`)
   // }
+
+  return <h1>{session.data?.user.name}</h1>
+
   // return (
   //   <>
   //     <NextSeo title="Atualize seu perfil | Ignite Call" noindex />
