@@ -7,6 +7,7 @@ import {
   Text,
   TextArea,
 } from '@ignite-ui/react'
+import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { getServerSession } from 'next-auth'
@@ -80,9 +81,10 @@ export default function UpdateProfile() {
               Fale um pouco sobre você. Isto será exibido em sua página pessoal.
             </FormAnnotation>
           </div>
+
           <Button type="submit" disabled={isSubmitting}>
             Finalizar
-            {/* <ArrowRight /> */}
+            <ArrowRight />
           </Button>
         </ProfileBox>
       </Container>
