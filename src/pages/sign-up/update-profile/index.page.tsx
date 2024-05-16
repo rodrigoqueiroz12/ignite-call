@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { getServerSession } from 'next-auth'
 import { useSession } from 'next-auth/react'
+import { NextSeo } from 'next-seo'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -37,13 +38,15 @@ export default function UpdateProfile() {
 
   return (
     <form onSubmit={handleSubmit(handleUpdateProfile)}>
+      <NextSeo title="Atualize seu perfil | Ignite Call" noindex />
+
       <h1>{session.data?.user.name}</h1>
     </form>
   )
 
   // return (
   //   <>
-  //     <NextSeo title="Atualize seu perfil | Ignite Call" noindex />
+  //
   //     <Container>
   //       <Header>
   //         <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
