@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Text, TextArea } from '@ignite-ui/react'
-import { ArrowRight } from '@phosphor-icons/react'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { getServerSession } from 'next-auth'
@@ -75,7 +74,7 @@ export default function UpdateProfile() {
         </div>
         <Button type="submit" disabled={isSubmitting}>
           Finalizar
-          <ArrowRight />
+          {/* <ArrowRight /> */}
         </Button>
       </form>
       {/* </ProfileBox> */}
