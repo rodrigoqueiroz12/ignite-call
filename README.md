@@ -3,9 +3,9 @@
 ## Docker Command
 
 ```bash
-docker run -d --name mysql-ignite-call -e MYSQL_ROOT_PASSWORD=docker -p 3306:3306 mysql:latest
+docker run --name ignite-call -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 
-docker start mysql-ignite-call
+docker start ignite-call
 
-docker stop mysql-ignite-call
+docker stop ignite-call
 ```
