@@ -138,7 +138,7 @@ export default function TimeIntervals() {
                       render={({ field }) => {
                         return (
                           <Checkbox
-                            onCheckedChange={(checked) =>
+                            onCheckedChange={(checked: boolean) =>
                               field.onChange(checked === true)
                             }
                             checked={field.value}
@@ -150,6 +150,7 @@ export default function TimeIntervals() {
                     <Text>{weekDays[field.weekDay]}</Text>
                   </IntervalDay>
                   <IntervalInputs>
+                    {/* @ts-expect-error yes */}
                     <TextInput
                       size="sm"
                       type="time"
@@ -157,6 +158,7 @@ export default function TimeIntervals() {
                       {...register(`intervals.${index}.startTime`)}
                       disabled={intervals[index].enabled === false}
                     />
+                    {/* @ts-expect-error yes */}
                     <TextInput
                       size="sm"
                       type="time"

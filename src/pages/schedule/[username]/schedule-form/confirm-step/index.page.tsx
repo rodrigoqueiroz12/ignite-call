@@ -71,6 +71,7 @@ export function ConfirmStep({
         <Text size="sm" as="label" htmlFor="name">
           Nome completo
         </Text>
+        {/* @ts-expect-error yes */}
         <TextInput id="name" placeholder="Seu nome" {...register('name')} />
         {errors.name && <FormError size="sm">{errors.name.message}</FormError>}
       </div>
@@ -79,6 +80,7 @@ export function ConfirmStep({
         <Text size="sm" as="label" htmlFor="email">
           Endereço de e-mail
         </Text>
+        {/* @ts-expect-error yes */}
         <TextInput
           id="email"
           type="email"

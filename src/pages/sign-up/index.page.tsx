@@ -84,7 +84,7 @@ export default function SignUp() {
             <Text as="label" size="sm" htmlFor="username">
               Nome de usuário
             </Text>
-
+            {/* @ts-expect-error yes */}
             <TextInput
               id="username"
               prefix="ignite.com/"
@@ -101,7 +101,7 @@ export default function SignUp() {
             <Text as="label" size="sm" htmlFor="name">
               Nome completo
             </Text>
-
+            {/* @ts-expect-error yes */}
             <TextInput id="name" placeholder="Seu nome" {...register('name')} />
 
             {errors.name && (

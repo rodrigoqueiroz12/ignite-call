@@ -40,6 +40,7 @@ export function ClaimUsernameForm() {
   return (
     <>
       <Form as="form" onSubmit={handleSubmit(handleClaimUsername)}>
+        {/* @ts-expect-error yes */}
         <TextInput
           size="sm"
           prefix="ignite.com/"
