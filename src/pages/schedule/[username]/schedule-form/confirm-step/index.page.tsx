@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Text, TextArea, TextInput } from '@ignite-ui/react'
-import { CalendarBlank, Clock } from '@phosphor-icons/react'
+import { CalendarBlank, Clock } from '@phosphor-icons/react/dist/ssr'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
