@@ -44,7 +44,6 @@ export function ClaimUsernameForm() {
           size="sm"
           prefix="ignite.com/"
           placeholder="Your username"
-          crossOrigin=""
           {...register('username')}
         />
         <Button size="sm" type="submit" disabled={isSubmitting}>
