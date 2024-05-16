@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Avatar, Button, Text, TextArea } from '@ignite-ui/react'
+import { Button, Text, TextArea } from '@ignite-ui/react'
 import { ArrowRight } from '@phosphor-icons/react'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
@@ -58,11 +58,11 @@ export default function UpdateProfile() {
       <form onSubmit={handleSubmit(handleUpdateProfile)}>
         <div className="label">
           <Text>Foto de perfil</Text>
-          <Avatar
+          {/* <Avatar
             src={session.data?.user.avatar_url}
             referrerPolicy="no-referrer"
             alt={session.data?.user.name}
-          />
+          /> */}
         </div>
         <div className="label">
           <Text size="sm" as="label" htmlFor="bio">
