@@ -11,7 +11,7 @@ import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { getServerSession } from 'next-auth'
-// import { useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -28,8 +28,7 @@ const updateProfileSchema = z.object({
 
 type UpdateProfileData = z.infer<typeof updateProfileSchema>
 
-// @ts-expect-error yes
-export default function UpdateProfile({ session }) {
+export default function UpdateProfile() {
   const router = useRouter()
   const {
     register,
@@ -39,7 +38,7 @@ export default function UpdateProfile({ session }) {
     resolver: zodResolver(updateProfileSchema),
   })
 
-  // const session = useSession()
+  const session = useSession()
 
   async function handleUpdateProfile(data: UpdateProfileData) {
     await api.put('/users/profile', {
