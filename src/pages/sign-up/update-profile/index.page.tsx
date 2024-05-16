@@ -1,12 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import {
-  Avatar,
-  Button,
-  Heading,
-  MultiStep,
-  Text,
-  TextArea,
-} from '@ignite-ui/react'
+import { Avatar, Button, Text, TextArea } from '@ignite-ui/react'
 import { ArrowRight } from '@phosphor-icons/react'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
@@ -19,7 +12,6 @@ import { z } from 'zod'
 import { api } from '@/lib/axios'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 
-import { Header } from '../styles'
 import { FormAnnotation, ProfileBox } from './styles'
 
 const updateProfileSchema = z.object({
@@ -53,14 +45,15 @@ export default function UpdateProfile() {
       <NextSeo title="Atualize seu perfil | Ignite Call" noindex />
 
       {/* <Container> */}
-      <Header>
+      {/* <Header>
         <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
         <Text>
           Precisamos de algumas informações para criar seu perfil! Ah, você pode
           editar essas informações depois.
         </Text>
         <MultiStep size={4} currentStep={4} />
-      </Header>
+      </Header> */}
+
       <ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
         <div className="label">
           <Text>Foto de perfil</Text>
