@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Text, TextArea, TextInput } from '@ignite-ui/react'
-import { CalendarBlank, Clock } from '@phosphor-icons/react/dist/ssr'
 import dayjs from 'dayjs'
+import { CalendarDays, Clock } from 'lucide-react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -58,7 +58,7 @@ export default function ConfirmStep({
     <ConfirmForm as="form" onSubmit={handleSubmit(handleConfirmScheduling)}>
       <FormHeader>
         <Text>
-          <CalendarBlank />
+          <CalendarDays />
           {describedDate}
         </Text>
         <Text>

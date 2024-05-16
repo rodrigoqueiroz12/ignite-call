@@ -1,5 +1,5 @@
 import { Button, Heading, MultiStep, Text } from '@ignite-ui/react'
-import { ArrowRight, Check } from '@phosphor-icons/react/dist/ssr'
+import { ArrowRight, Check } from 'lucide-react'
 import { useRouter } from 'next/router'
 import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'

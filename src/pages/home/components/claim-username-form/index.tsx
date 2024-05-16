@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Text, TextInput } from '@ignite-ui/react'
-import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
+import { ArrowRight } from 'lucide-react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import z from 'zod'

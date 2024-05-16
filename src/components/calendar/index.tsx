@@ -1,6 +1,6 @@
-import { CaretLeft, CaretRight } from '@phosphor-icons/react/dist/ssr'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRouter } from 'next/router'
 import { useMemo, useState } from 'react'
 
@@ -159,10 +159,10 @@ export function Calendar({ onDateSelected }: CalendarProps) {
 
         <CalendarActions>
           <button onClick={handlePreviousMonth} title="Previous month">
-            <CaretLeft />
+            <ChevronLeft />
           </button>
           <button onClick={handleNextMonth} title="Next month">
-            <CaretRight />
+            <ChevronRight />
           </button>
         </CalendarActions>
       </CalendarHeader>

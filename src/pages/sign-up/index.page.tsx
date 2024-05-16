@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Heading, MultiStep, Text, TextInput } from '@ignite-ui/react'
-import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import { AxiosError } from 'axios'
+import { ArrowRight } from 'lucide-react'
 import { Roboto } from 'next/font/google'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'

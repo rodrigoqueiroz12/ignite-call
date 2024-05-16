@@ -7,7 +7,7 @@ import {
   Text,
   TextInput,
 } from '@ignite-ui/react'
-import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
+import { ArrowRight } from 'lucide-react'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
