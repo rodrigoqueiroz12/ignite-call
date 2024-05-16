@@ -1,57 +1,45 @@
-// import { zodResolver } from '@hookform/resolvers/zod'
-// import {
-//   Avatar,
-//   Button,
-//   Heading,
-//   MultiStep,
-//   Text,
-//   TextArea,
-// } from '@ignite-ui/react'
-// import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
-// import { GetServerSideProps } from 'next'
-// import { useRouter } from 'next/router'
-// import { getServerSession } from 'next-auth'
-// import { useSession } from 'next-auth/react'
-// import { NextSeo } from 'next-seo'
-// import { useForm } from 'react-hook-form'
-// import { z } from 'zod'
-
+import { zodResolver } from '@hookform/resolvers/zod'
 import { GetServerSideProps } from 'next'
-// import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { getServerSession } from 'next-auth'
 import { useSession } from 'next-auth/react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
+import { api } from '@/lib/axios'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 
-// import { api } from '@/lib/axios'
-// import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
-// import { Container, Header } from '../styles'
-// import { FormAnnotation, ProfileBox } from './styles'
+const updateProfileSchema = z.object({
+  bio: z.string(),
+})
 
-// const updateProfileSchema = z.object({
-//   bio: z.string(),
-// })
-
-// type UpdateProfileData = z.infer<typeof updateProfileSchema>
+type UpdateProfileData = z.infer<typeof updateProfileSchema>
 
 export default function UpdateProfile() {
-  // const router = useRouter()
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { isSubmitting },
-  // } = useForm<UpdateProfileData>({
-  //   resolver: zodResolver(updateProfileSchema),
-  // })
-  const session = useSession()
-  // async function handleUpdateProfile(data: UpdateProfileData) {
-  //   await api.put('/users/profile', {
-  //     bio: data.bio,
-  //   })
-  //   await router.push(`/schedule/${session.data?.user.username}`)
-  // }
+  const router = useRouter()
+  const {
+    // register,
+    handleSubmit,
+    // formState: { isSubmitting },
+  } = useForm<UpdateProfileData>({
+    resolver: zodResolver(updateProfileSchema),
+  })
 
-  return <h1>{session.data?.user.name}</h1>
+  const session = useSession()
+
+  async function handleUpdateProfile(data: UpdateProfileData) {
+    await api.put('/users/profile', {
+      bio: data.bio,
+    })
+
+    await router.push(`/schedule/${session.data?.user.username}`)
+  }
+
+  return (
+    <form onSubmit={handleSubmit(handleUpdateProfile)}>
+      <h1>{session.data?.user.name}</h1>
+    </form>
+  )
 
   // return (
   //   <>
